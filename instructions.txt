@@ -1,0 +1,12 @@
+PreMEST C2 Assignment 4
+Build a API for a directory of books
+Your API must be built with Express
+Your API should have the following routes and return the following resources(responses)
+See the image for the required routes
+You can find some fake author/book data the following link: https://github.com/alfred-mest/mocked_data
+Read more about authentication here: https://fullstackopen.com/en/part4/token_authentication
+Deploy your API (to heroku, etc)
+Commit to github at least once an hour or after completing each route
+Submit your homework at this link: https://forms.gle/uFEHnbwTXCk45R1p7
+Screen Shot 2020-10-21 at 3.19.33 PM.png 
+Screen Shot 2020-10-21 at 3.19.33 PM.png
