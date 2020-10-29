@@ -2,27 +2,7 @@ const booksRouter = require("express").Router();
 const books = require("../books.json");
 
 booksRouter.get("/", (req, res) => {
-  console.log(books);
   res.send(books);
-});
-
-booksRouter.get("/bookid", (req, res) => {
-  const reqBody = request.body;
-  if (reqBody.title) {
-    const single_book = books.filter((eachBook) => {
-      return eachBook.title === reqBody.title;
-    });
-
-    if (single_book) {
-      res.status(200).send(single_book);
-    } else {
-      res.status(404).send({ message: "Sorry, book not found" });
-    }
-  } else {
-    res
-      .status(400)
-      .send({ message: "Title parameter is missing or mispelled." });
-  }
 });
 
 booksRouter.post("/", (request, response) => {
@@ -44,6 +24,35 @@ booksRouter.post("/", (request, response) => {
   }
 });
 
-booksRouter.delete("/bookid", (req, res) => {});
+booksRouter.get("/:bookid", (req, res) => {
+  const id = req.params.bookid;
+  if (id) {
+    const single_book = books[id - 1];
+    if (single_book) {
+      res.status(200).send(single_book);
+    } else {
+      res.status(404).send({ message: "Sorry, book not found" });
+    }
+  } else {
+    res.status(400).send({ message: "Please enter an id." });
+  }
+});
+
+booksRouter.delete("/:bookid", (req, res) => {
+  const id = req.params.bookid;
+  //fix problem on unavailable id
+  if (id) {
+    const deleted_book = books.splice(id - 1, 1);
+    if (deleted_book) {
+      res.status(200).send(deleted_book);
+    } else {
+      res.status(404).send({ message: "Sorry, book not found" });
+    }
+  } else {
+    res.status(400).send({ message: "Please enter an id." });
+  }
+});
+
+
 
 module.exports = booksRouter;

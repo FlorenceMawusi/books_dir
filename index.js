@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const fs = require("fs");
+const authorRouter = require("./controllers/author");
 const booksRouter = require("./controllers/book");
 
 app.use(bodyParser.json());
@@ -20,6 +21,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/books", booksRouter);
+app.use("/authors", authorRouter);
+
 
 const PORT = process.env.PORT || 3001;
 
